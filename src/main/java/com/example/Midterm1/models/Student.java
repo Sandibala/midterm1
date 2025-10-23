@@ -18,8 +18,6 @@ public class Student {
     private Long id;
     private String name;
     private String lastName;
-
-
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "student_id")
     private List<Book> books;

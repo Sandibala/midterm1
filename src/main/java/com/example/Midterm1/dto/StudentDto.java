@@ -8,12 +8,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class StudentDto {
-    private String name;
-    private String lastName;
-
+    private String nameDto;
+    private String lastNameDto;
 }

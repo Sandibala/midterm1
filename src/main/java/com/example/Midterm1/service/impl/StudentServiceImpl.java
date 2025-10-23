@@ -7,7 +7,6 @@ import com.example.Midterm1.repositories.StudentRepository;
 import com.example.Midterm1.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -22,21 +21,26 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void getById(Long id) {
-
+    public StudentDto getById(Long id) {
+   return studentMapper.toDto(studentRepository.findById(id).orElse(null));
     }
 
     @Override
-    public void addStudent(StudentDto studentDto) {
-
+    public StudentDto addStudent(StudentDto studentDto) {
+        return studentMapper.toDto(studentRepository.save(studentMapper.toEntity(studentDto)));
     }
 
+
     @Override
-    public void updateStudent(Long id, StudentDto studentDto) {
+    public StudentDto updateStudent(Long id, StudentDto studentDto) {
         Student student = studentRepository.findById(id).orElse(null);
-        student.setName(studentDto.getName());
-        student.setLastName(studentDto.getLastName());
+        student.setName(studentDto.getNameDto());
+        student.setLastName(studentDto.getLastNameDto());
         studentRepository.save(student);
+        Student student2 = studentRepository.findById(id).orElse(null);
+        return studentMapper.toDto(student2);
+
+
 
     }
 
