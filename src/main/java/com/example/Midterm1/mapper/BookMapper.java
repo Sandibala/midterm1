@@ -8,9 +8,11 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface BookMapper {
-    @Mapping(target = "title", source = "title")
-    @Mapping(target = "author", source = "author")
+    @Mapping(target = "titleDto", source = "title")
+    @Mapping(target = "authorDto", source = "author")
     BookDto toDto(Book book);
+    @Mapping(target = "title", source = "titleDto")
+    @Mapping(target = "author", source = "authorDto")
     Book toEntity(BookDto bookDto);
     List<BookDto> toDtoList(List<Book> books);
     List<Book> toEntityLList(List<BookDto> bookDto);

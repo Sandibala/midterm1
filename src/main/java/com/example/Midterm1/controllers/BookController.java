@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class BookController {
     private final BookService bookService;
 
-    @GetMapping("/all")
+    @GetMapping()
     public ResponseEntity<?> getBooks(){
         return new ResponseEntity<>(bookService.getBooks(), HttpStatus.OK);
     }
@@ -22,16 +22,16 @@ public class BookController {
     public ResponseEntity<?>  getById(@PathVariable(name = "id") Long id){
      return new ResponseEntity<>(bookService.getById(id), HttpStatus.OK);
     }
-    @PostMapping("/add")
+    @PostMapping()
     public ResponseEntity<?> addBook(@RequestBody BookDto bookDto){
         return new ResponseEntity<>(bookService.addBooK(bookDto),HttpStatus.OK);
     }
-    @PutMapping("/update")
-    public ResponseEntity<?> updateBook(@PathVariable(name = "id") Long id, @RequestBody BookDto bookDto){
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateBook(@PathVariable Long id, @RequestBody BookDto bookDto){
         return new ResponseEntity<>(bookService.updateBook(id, bookDto), HttpStatus.OK);
     }
-    @DeleteMapping("/delete")
-    public ResponseEntity<?> deleteBook(@PathVariable(name = "id") Long id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteBook(@PathVariable Long id){
         return new ResponseEntity<>(bookService.deleteBook(id), HttpStatus.OK);
     }
 }

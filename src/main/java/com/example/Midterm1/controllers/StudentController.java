@@ -12,26 +12,26 @@ import org.springframework.web.bind.annotation.*;
 public class StudentController {
     private final StudentService studentService;
 
-    @GetMapping("/all")
+    @GetMapping()
     public ResponseEntity<?> getStudents(){
         return new ResponseEntity<>(studentService.getStudents(), HttpStatus.OK);
     }
-    @GetMapping("/find/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable(name = "id") Long id){
         return new ResponseEntity<>(studentService.getById(id),HttpStatus.OK);
     }
 
-    @PostMapping("/add")
+    @PostMapping()
     public ResponseEntity<?> addStudent(@RequestBody StudentDto studentDto){
         return new ResponseEntity<>(studentService.addStudent(studentDto), HttpStatus.OK);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<StudentDto> updateStudent(@PathVariable(name ="id") Long id, @RequestBody StudentDto studentDto){
         return new ResponseEntity<>(studentService.updateStudent(id, studentDto), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteStudent(@PathVariable(name = "id") Long id){
         return new ResponseEntity<>(studentService.deleteStudent(id), HttpStatus.OK);
     }

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class TeacherController {
     private final TeacherService teacherService;
 
-    @GetMapping("/all")
+    @GetMapping()
     public ResponseEntity<?> getTeachers(){
         return new ResponseEntity<>(teacherService.getTeachers(), HttpStatus.OK);
     }
@@ -21,15 +21,15 @@ public class TeacherController {
     public ResponseEntity<?> getById(@PathVariable(name = "id") Long id){
         return new ResponseEntity<>(teacherService.getById(id), HttpStatus.OK);
     }
-    @PostMapping("/add")
+    @PostMapping()
     public ResponseEntity<?> addTeacher(@RequestBody TeacherDto teacherDto){
         return new ResponseEntity<>(teacherService.addTeacher(teacherDto),HttpStatus.OK);
     }
-    @PutMapping("/update")
+    @PutMapping("/{id}")
     public ResponseEntity<?> updateTeacher(@PathVariable(name = "id") Long id, @RequestBody TeacherDto teacherDto){
         return new ResponseEntity<>(teacherService.updateTeacher(id, teacherDto), HttpStatus.OK);
     }
-    @DeleteMapping("/delete")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteTeacher(@PathVariable(name = "id") Long id){
         return new ResponseEntity<>(teacherService.deleteTeacher(id), HttpStatus.OK);
     }

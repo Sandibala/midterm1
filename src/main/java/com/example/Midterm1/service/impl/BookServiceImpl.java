@@ -1,15 +1,11 @@
 package com.example.Midterm1.service.impl;
-
 import com.example.Midterm1.dto.BookDto;
-import com.example.Midterm1.dto.StudentDto;
 import com.example.Midterm1.mapper.BookMapper;
 import com.example.Midterm1.models.Book;
-import com.example.Midterm1.models.Student;
 import com.example.Midterm1.repositories.BookRepositories;
 import com.example.Midterm1.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -39,8 +35,8 @@ public class BookServiceImpl implements BookService {
     @Override
     public BookDto updateBook(Long id, BookDto bookDto) {
      Book book = bookRepositories.findById(id).orElse(null);
-     book.setTitle(bookDto.getTitle());
-     book.setAuthor(bookDto.getAuthor());
+     book.setTitle(bookDto.getTitleDto());
+     book.setAuthor(bookDto.getAuthorDto());
      bookRepositories.save(book);
      Book book1 = bookRepositories.findById(id).orElse(null);
      return bookMapper.toDto(book1);
