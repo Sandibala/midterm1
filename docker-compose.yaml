@@ -1,0 +1,26 @@
+services:
+  backend-service:
+    build: .
+    container_name: 'my-container'
+    environment:
+        - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/swl
+        - SPRING_DATASOURCE_USERNAME=postgres
+        - SPRING_DATASOURCE_PASSWORD=postgres
+    ports:
+       - 8080:8080
+    depends_on:
+      - database
+
+  database:
+    image: postgres:16
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=swl
+    ports:
+      - 5432:5432
+
+
+
+
